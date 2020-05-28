@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="main">
+      <NavBar></NavBar>
+      <div class="main-container">
+        <ShowBox v-for="datum in data" :key="datum.id" :data="datum"></ShowBox>
+      </div>
+    </div>
+    <div class="favorites">
+      <div class="navbar favorites-header"><h1>Favorites</h1></div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/NavBar'
+import './style.css'
+import data from './data.json'
+import ShowBox from './components/ShowBox'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    NavBar,
+    ShowBox,
+  },
+  data() {
+    return {
+      data: data,
+    }
+  },
 }
+console.log(data)
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
