@@ -1,9 +1,18 @@
 <template>
   <div id="app">
     <div class="main">
-      <NavBar></NavBar>
-      <div class="main-container">
-        <ShowBox v-for="datum in data" :key="datum.id" :data="datum"></ShowBox>
+      <div class="navbar">
+        <h1>Search</h1>
+        <div class="search">
+          <input type="text" v-model="search" @input="filter" />
+        </div>
+      </div>
+      <div v-if="episodes.length" class="main-container">
+        <ShowBox
+          v-for="episode in episodes"
+          :key="episode.id"
+          :data="episode"
+        ></ShowBox>
       </div>
     </div>
     <div class="favorites">
@@ -13,7 +22,6 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar'
 import './style.css'
 import data from './data.json'
 import ShowBox from './components/ShowBox'
@@ -21,14 +29,23 @@ import ShowBox from './components/ShowBox'
 export default {
   name: 'App',
   components: {
-    NavBar,
     ShowBox,
   },
   data() {
     return {
-      data: data,
+      episodes: data,
+      search: '',
     }
   },
+  methods: {
+    filter() {
+      const query = new RegExp(this.search)
+
+      const filteredEpisodes = data.filter(episode => {
+        return query.test(episode.name)
+      })
+      this.episodes = filteredEpisodes
+    },
+  },
 }
-console.log(data)
 </script>

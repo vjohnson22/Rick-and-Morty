@@ -9,11 +9,13 @@
 
 <script>
 export default {
-  name: "NavBar",
+  name: 'NavBar',
+  props: ['searchParams'],
   data() {
     return {
-      search: ""
-    };
-  }
-};
+      search: '',
+    }
+  },
+  methods: {},
+}
 </script>
