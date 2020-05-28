@@ -3,7 +3,7 @@
   flex-direction: row;
   width: 100%;
   margin: 0;
-  border: 5px solid orange;
+
   justify-content: flex-start;
 }
 
@@ -40,7 +40,7 @@ input[type='text'] {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  border: 5px solid green;
+  border: 1px solid black;
 }
 
 .showbox-container {
@@ -61,6 +61,8 @@ input[type='text'] {
   width: 25%;
   height: 100vh;
   border: 1px solid black;
+  flex-direction: column;
+  align-items: center;
 }
 .favorites-header {
   background-color: green;
@@ -70,7 +72,6 @@ input[type='text'] {
 }
 
 .pic-container {
-  border: 1px solid purple;
   width: 90%;
   height: 30vh;
 }
@@ -91,13 +92,13 @@ input[type='text'] {
 
 .more-info-container {
   width: 90%;
-  border: 2px solid salmon;
+
   padding: 30px;
 }
 
 .more-info-page {
   width: 100%;
-  border: 2px solid blue;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,4 +106,25 @@ input[type='text'] {
 
 .info-pic {
   max-width: 100%;
+}
+
+.fav-container {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.fav-pic {
+  width: 100%;
+}
+
+.fav-button-container {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

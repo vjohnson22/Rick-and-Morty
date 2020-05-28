@@ -13,6 +13,7 @@
           :key="episode.id"
           :data="episode"
           @clickMoreInfo="handleMoreInfo"
+          @add="addToFavs"
         ></ShowBox>
       </div>
       <div v-if="moreInfo.length > 0" class="main-container">
@@ -24,7 +25,16 @@
       </div>
     </div>
     <div class="favorites">
-      <div class="navbar favorites-header"><h1>Favorites</h1></div>
+      <div class="navbar favorites-header">
+        <h1>Favorites</h1>
+      </div>
+      <Favorite
+        v-for="favorite in favorites"
+        :episode="favorite"
+        :key="favorite.id"
+        @clickMoreInfo="handleMoreInfo"
+        @removeFav="removeFromFavs"
+      ></Favorite>
     </div>
   </div>
 </template>
@@ -34,12 +44,14 @@ import './style.css'
 import data from './data.json'
 import ShowBox from './components/ShowBox'
 import Detail from './components/Detail'
+import Favorite from './components/Favorite'
 
 export default {
   name: 'App',
   components: {
     ShowBox,
     Detail,
+    Favorite,
   },
   data() {
     return {
@@ -58,13 +70,29 @@ export default {
       this.episodes = filteredEpisodes
     },
     handleMoreInfo(episode) {
+      if (this.moreInfo.length > 0) {
+        this.moreInfo = []
+      }
       this.moreInfo.push(episode)
     },
     removeMoreInfo() {
       this.moreInfo = []
     },
     addToFavs(episode) {
-      console.log('added to favs', episode)
+      const alreadyFav = this.favorites.filter(fav => {
+        return fav.name === episode.name
+      })
+
+      if (alreadyFav.length === 0) {
+        this.favorites.push(episode)
+      }
+    },
+    removeFromFavs(episode) {
+      const favs = this.favorites.filter(fav => {
+        return fav.name !== episode.name
+      })
+
+      this.favorites = favs
     },
   },
 }

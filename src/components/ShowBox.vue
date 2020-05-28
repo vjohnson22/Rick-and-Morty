@@ -10,7 +10,7 @@
     </div>
     <div>
       <button @click="clickMoreInfo">More Info</button>
-      <button>Add to Favorites</button>
+      <button @click="add">Add to Favorites</button>
     </div>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
   methods: {
     clickMoreInfo() {
       this.$emit('clickMoreInfo', this.data)
+    },
+    add() {
+      this.$emit('add', this.data)
     },
   },
 }
