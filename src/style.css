@@ -83,3 +83,26 @@ input[type='text'] {
 .info-container {
   width: 90%;
 }
+
+#go-back-button {
+  margin-top: 25px;
+  font-size: 24px;
+}
+
+.more-info-container {
+  width: 90%;
+  border: 2px solid salmon;
+  padding: 30px;
+}
+
+.more-info-page {
+  width: 100%;
+  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-pic {
+  max-width: 100%;
+}

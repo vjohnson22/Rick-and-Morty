@@ -9,7 +9,7 @@
       <h2>Episode: {{ data.number }}</h2>
     </div>
     <div>
-      <button>More Info</button>
+      <button @click="clickMoreInfo">More Info</button>
       <button>Add to Favorites</button>
     </div>
   </div>
@@ -21,6 +21,11 @@ export default {
   props: {
     data: {
       type: Object,
+    },
+  },
+  methods: {
+    clickMoreInfo() {
+      this.$emit('clickMoreInfo', this.data)
     },
   },
 }
