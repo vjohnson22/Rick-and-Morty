@@ -11,21 +11,29 @@
           <input type="text" v-model="search" @input="filter" />
         </div>
       </div>
-      <div v-if="moreInfo.length === 0" class="main-container">
-        <ShowBox
-          v-for="episode in episodes"
-          :key="episode.id"
-          :data="episode"
-          @clickMoreInfo="handleMoreInfo"
-          @add="addToFavs"
-        ></ShowBox>
+      <div v-if="loading" class="dancing-container">
+        <img
+          src="https://media.giphy.com/media/e6tJpLvjY8jXa/giphy.gif"
+          class="dancing"
+        />
       </div>
-      <div v-if="moreInfo.length > 0" class="main-container">
-        <Detail
-          :episode="moreInfo[0]"
-          @goBack="removeMoreInfo"
-          @add="addToFavs"
-        ></Detail>
+      <div v-if="!loading">
+        <div v-if="moreInfo.length === 0" class="main-container">
+          <ShowBox
+            v-for="episode in episodes"
+            :key="episode.id"
+            :data="episode"
+            @clickMoreInfo="handleMoreInfo"
+            @add="addToFavs"
+          ></ShowBox>
+        </div>
+        <div v-if="moreInfo.length > 0" class="main-container">
+          <Detail
+            :episode="moreInfo[0]"
+            @goBack="removeMoreInfo"
+            @add="addToFavs"
+          ></Detail>
+        </div>
       </div>
     </div>
     <div class="favorites">
@@ -65,6 +73,7 @@ export default {
       moreInfo: [],
       favorites: [],
       logo: rmLogo,
+      loading: true,
     }
   },
   methods: {
@@ -100,6 +109,13 @@ export default {
 
       this.favorites = favs
     },
+    stopLoading() {
+      console.log('loading')
+      setTimeout(() => (this.loading = false), 5000)
+    },
+  },
+  mounted() {
+    this.stopLoading()
   },
 }
 </script>
