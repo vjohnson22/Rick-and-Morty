@@ -2,8 +2,12 @@
   <div id="app">
     <div class="main">
       <div class="navbar">
-        <h1>Search</h1>
+        <div class="logo-container">
+          <img :src="logo" id="logo" />
+        </div>
+
         <div class="search">
+          <h1 class="search-text">Search</h1>
           <input type="text" v-model="search" @input="filter" />
         </div>
       </div>
@@ -45,6 +49,7 @@ import data from './data.json'
 import ShowBox from './components/ShowBox'
 import Detail from './components/Detail'
 import Favorite from './components/Favorite'
+import rmLogo from './assets/newLogo.png'
 
 export default {
   name: 'App',
@@ -59,6 +64,7 @@ export default {
       search: '',
       moreInfo: [],
       favorites: [],
+      logo: rmLogo,
     }
   },
   methods: {
